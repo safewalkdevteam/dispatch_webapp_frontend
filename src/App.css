@@ -1,0 +1,41 @@
+/* size of map container */
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+}
+
+.root__sidebar {
+    flex: 0.3;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: #181C25;
+}
+
+.root__sidebar .quicknav {
+    flex: 1;
+}
+
+.root__sidebar h2 {
+    font-size: 2vh;
+    font-weight: 500;
+    color: #64676E;
+}
+
+.root__sidebar hr {
+    border: none;
+    height: 0.075rem;
+    background-color: #2A303C;
+}
+
+.root__sidebar li button {
+    color: #9D9FA5;
+}
+
+.root__subapp {
+    flex: 0.5;
+    background-color: whitesmoke;
+}
+
+.leaflet-container {
+    flex: 1;
+}
