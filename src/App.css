@@ -5,7 +5,7 @@
 }
 
 .root__sidebar {
-    flex: 0.3;
+    flex: 0.2;
     display: flex;
     flex-flow: column nowrap;
     background-color: #181C25;
@@ -23,7 +23,9 @@
 
 .root__sidebar hr {
     border: none;
-    height: 0.075rem;
+    height: 1px;
+    width: 95%;
+    margin: auto;
     background-color: #2A303C;
 }
 
@@ -32,10 +34,48 @@
 }
 
 .root__subapp {
-    flex: 0.5;
+    flex: 0.3;
     background-color: whitesmoke;
 }
 
 .leaflet-container {
-    flex: 1;
+    flex: 0.5;
+}
+
+.sidebar__header {
+    border-bottom: 1px solid #2A303C;
+}
+
+.sidebar__footer {
+    display: grid;
+    place-content: center;
+    border-top: 1px solid #2A303C;
+    padding: 1.5em;
+}
+
+.sidebar__footer button::before {
+    content: "<";
+    margin-right: 0.5em;
+}
+
+.root__sidebar nav ul {
+    list-style-type: none;
+    margin: 0.5em;
+}
+
+.root__sidebar nav ul li button {
+    border: none;
+    border-radius: 0.25em;
+    background-color: transparent;
+    font-size: 1em;
+    width: 100%;
+    text-align: left;
+    padding: 0.5em;
+    padding-left: 3em;
+    margin-bottom: 0.5em;
+}
+
+.root__sidebar nav ul li button:hover {
+    cursor: pointer;
+    background-color: gray;
 }

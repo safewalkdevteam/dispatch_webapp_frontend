@@ -4,10 +4,10 @@ const QuickNav = () => {
             <h2>QUICK ACCESS</h2>
             <nav>
                 <ul>
-                    <li>BetterImpact</li>
-                    <li>Email</li>
-                    <li>Logbook</li>
-                    <li>Roster</li>
+                    <li><button>BetterImpact</button></li>
+                    <li><button>Email</button></li>
+                    <li><button>Logbook</button></li>
+                    <li><button>Roster</button></li>
                 </ul>
             </nav>
         </section>

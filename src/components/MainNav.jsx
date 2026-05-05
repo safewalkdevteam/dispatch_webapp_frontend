@@ -4,9 +4,9 @@ const MainNav = () => {
             <h2>MAIN</h2>
             <nav>
                 <ul>
-                    <li>Teams</li>
-                    <li>Call-In Form</li>
-                    <li>Boundaries</li>
+                    <li><button>Boundaries</button></li>
+                    <li><button>Call-In Form</button></li>
+                    <li><button>Teams</button></li>
                 </ul>
             </nav>
         </section>
