@@ -79,3 +79,15 @@
     cursor: pointer;
     background-color: gray;
 }
+
+.root__sidebar .sidebar__footer button {
+    background-color: transparent;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: #777A81
+}
+
+.root__sidebar .sidebar__footer button:hover {
+    color: white;
+}

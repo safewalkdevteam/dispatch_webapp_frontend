@@ -12,13 +12,7 @@ const Sidebar = () => {
             <hr />
             <QuickNav />
             <section className="sidebar__footer">
-                <button style={{
-                    backgroundColor: "transparent",
-                    border: "none",
-                    font: "inherit",
-                    cursor: "pointer",
-                    color: "#777A81"
-                }}>{"Collapse"}</button>
+                <button>{"Collapse"}</button>
             </section>
         </section>
     )
