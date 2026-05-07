@@ -76,7 +76,7 @@
 }
 
 .sidebar__footer .collapse:hover {
-    color: #aa3bff;
+    color: #F8DB28;
 }
 
 .root__sidebar nav ul {
@@ -97,6 +97,7 @@
     padding-left: 3em;
     display: block;
     text-decoration: none;
+    color: #9D9FA5;
 }
 
 .root__sidebar nav ul li a:hover {
@@ -105,6 +106,6 @@
 }
 
 .root__sidebar nav ul li .active {
-    background-color: #aa3bff;
-    color: white;
+    background-color: #F8DB28;
+    color: #181C25;
 }
