@@ -2,9 +2,15 @@ import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { useLocation } from "react-router-dom";
+import useWebSocket from "react-use-websocket";
 
 const Map = () => {
+    const [markers, setMarkers] = useState(() => []);
     const [boundaries, setBoundaries] = useState(() => []);
+    const location = useLocation();
+    const { lastJsonMessage, readyState } = useWebSocket(import.meta.env.VITE_WS_URL);
+
     const bounds = [
         [import.meta.env.VITE_SOUTH_BOUND, import.meta.env.VITE_WEST_BOUND],
         [import.meta.env.VITE_NORTH_BOUND, import.meta.env.VITE_EAST_BOUND]
@@ -21,12 +27,15 @@ const Map = () => {
             });
     }, []);
 
-    const markers = [
-        {
-            geocode: [import.meta.env.VITE_TEMP_LONG, import.meta.env.VITE_TEMP_LAT],
-            popUp: "Person"
+    useEffect(() => {
+        if (lastJsonMessage) {
+            if (!markers.some(marker => marker.team === lastJsonMessage.Team)) {
+                setMarkers([...markers, lastJsonMessage]);
+            } else {
+                setMarkers(markers.map(marker => lastJsonMessage.Team === marker.team ? lastJsonMessage : marker));
+            }
         }
-    ]
+    }, [lastJsonMessage]);
 
     const customIcon = new Icon({
         iconUrl: import.meta.env.VITE_TEMP_ICON_URL,
@@ -34,12 +43,14 @@ const Map = () => {
     });
     return (
         <MapContainer
+            key={JSON.stringify(location.pathname === "/")}
             center={[import.meta.env.VITE_CITY_LONG, import.meta.env.VITE_CITY_LAT]}
             zoom={11.5}
             zoomSnap={0.25}
             zoomDelta={0.25}
             minZoom={11.5}
             maxBounds={bounds}
+            style={{flex: location.pathname === "/" ? 0.8 : 0.5}}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -47,6 +58,7 @@ const Map = () => {
             />
             {markers.map(marker =>
                 <Marker
+                    key={marker.geocode.join(",")}
                     position={marker.geocode}
                     icon={customIcon}
                 >

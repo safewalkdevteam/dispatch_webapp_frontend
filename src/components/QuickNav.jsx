@@ -1,13 +1,18 @@
-const QuickNav = () => {
+import { NavLink } from "react-router-dom";
+
+const QuickNav = ({ quickAccessLinks }) => {
     return (
         <section className="quicknav">
             <h2>QUICK ACCESS</h2>
             <nav>
                 <ul>
-                    <li><button>BetterImpact</button></li>
-                    <li><button>Email</button></li>
-                    <li><button>Logbook</button></li>
-                    <li><button>Roster</button></li>
+                    {quickAccessLinks.map((link, index) => (
+                        <li key={index}>
+                            <NavLink  to={link.url} target="_blank" rel="noopener noreferrer">
+                                {link.name}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </section>

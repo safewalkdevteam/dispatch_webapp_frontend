@@ -1,18 +1,21 @@
 import MainNav from "./MainNav";
 import QuickNav from "./QuickNav";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = (links) => {
     return (
         <section className="root__sidebar">
             <section className="sidebar__header">
                 <h1>Safewalk</h1>
                 <h2>DISPATCH</h2>
             </section>
-            <MainNav />
+            <MainNav mainLinks={links.mainLinks} />
             <hr />
-            <QuickNav />
+            <QuickNav quickAccessLinks={links.quickAccessLinks} />
             <section className="sidebar__footer">
-                <button>{"Collapse"}</button>
+                <Link to="/" className="collapse">
+                    {"Collapse"}
+                </Link>
             </section>
         </section>
     )

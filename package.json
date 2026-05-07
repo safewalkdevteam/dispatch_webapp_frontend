@@ -16,6 +16,7 @@
         "react-dom": "^19.2.5",
         "react-leaflet": "^5.0.0",
         "react-router-dom": "^7.15.0",
+        "react-use-websocket": "^4.13.0",
         "xmldom": "^0.6.0"
     },
     "devDependencies": {

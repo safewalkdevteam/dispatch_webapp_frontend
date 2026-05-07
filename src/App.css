@@ -4,11 +4,17 @@
     width: 100%;
 }
 
+.root__map {
+    flex: 0.5;
+    background-color: #e5e4e7;
+}
+
 .root__sidebar {
     flex: 0.2;
     display: flex;
     flex-flow: column nowrap;
     background-color: #181C25;
+    position: relative;
 }
 
 .root__sidebar .quicknav {
@@ -36,10 +42,9 @@
 .root__subapp {
     flex: 0.3;
     background-color: whitesmoke;
-}
-
-.leaflet-container {
-    flex: 0.5;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
 }
 
 .sidebar__header {
@@ -48,22 +53,40 @@
 
 .sidebar__footer {
     display: grid;
-    place-content: center;
     border-top: 1px solid #2A303C;
     padding: 1.5em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
-.sidebar__footer button::before {
+.sidebar__footer .collapse::before {
     content: "<";
     margin-right: 0.5em;
+}
+
+.sidebar__footer .collapse {
+    background-color: transparent;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: #777A81;
+    margin: auto;
+    text-decoration: none;
+}
+
+.sidebar__footer .collapse:hover {
+    color: #aa3bff;
 }
 
 .root__sidebar nav ul {
     list-style-type: none;
     margin: 0.5em;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
-.root__sidebar nav ul li button {
+.root__sidebar nav ul li a {
     border: none;
     border-radius: 0.25em;
     background-color: transparent;
@@ -72,22 +95,16 @@
     text-align: left;
     padding: 0.5em;
     padding-left: 3em;
-    margin-bottom: 0.5em;
+    display: block;
+    text-decoration: none;
 }
 
-.root__sidebar nav ul li button:hover {
+.root__sidebar nav ul li a:hover {
     cursor: pointer;
     background-color: gray;
 }
 
-.root__sidebar .sidebar__footer button {
-    background-color: transparent;
-    border: none;
-    font: inherit;
-    cursor: pointer;
-    color: #777A81
-}
-
-.root__sidebar .sidebar__footer button:hover {
+.root__sidebar nav ul li .active {
+    background-color: #aa3bff;
     color: white;
 }
