@@ -3,9 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useLocation } from "react-router-dom";
-import useWebSocket from "react-use-websocket";
+import useWebSocketModule from "react-use-websocket";
 
 const Map = () => {
+    const useWebSocket = useWebSocketModule.default;
     const [markers, setMarkers] = useState(() => []);
     const [boundaries, setBoundaries] = useState(() => []);
     const location = useLocation();

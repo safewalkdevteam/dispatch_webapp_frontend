@@ -1,11 +1,21 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 function TeamsSubApp() {
+    const [teams, setTeams] = useState([]);
+
+    useEffect(() => {
+        fetch("/api/teams")
+            .then((res) => res.json())
+            .then((data) => setTeams(data));
+    }, []);
+
     return (
-        <div>
-            <h1>Teams</h1>
-            <p>This is the Teams subapp.</p>
-        </div>
+        <section>
+            {teams.map(team =>
+                <div key={team.id}>
+                    {team.name}
+                </div>)}
+        </section>
     );
 }
 
