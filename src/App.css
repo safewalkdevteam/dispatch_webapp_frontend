@@ -47,6 +47,21 @@
     position: relative;
 }
 
+.root__subapp > h2 {
+    font-size: 1em;
+    color: #64676E;
+    font-weight: bold;
+    padding: 0.25em;
+    border-bottom: 1px solid #2A303C;
+}
+
+.root__subapp section.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .sidebar__header {
     border-bottom: 1px solid #2A303C;
 }

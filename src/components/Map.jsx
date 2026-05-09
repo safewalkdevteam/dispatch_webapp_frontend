@@ -9,8 +9,8 @@ const Map = () => {
     const useWebSocket = useWebSocketModule.default;
     const [markers, setMarkers] = useState(() => []);
     const [boundaries, setBoundaries] = useState(() => []);
-    const location = useLocation();
-    const { lastJsonMessage, readyState } = useWebSocket(import.meta.env.VITE_WS_URL);
+    const location = useLocation();     
+    const { lastJsonMessage, readyState } = useWebSocket(`ws://${import.meta.env.VITE_SERVER_HOST}/api/pings`);
 
     const bounds = [
         [import.meta.env.VITE_SOUTH_BOUND, import.meta.env.VITE_WEST_BOUND],
