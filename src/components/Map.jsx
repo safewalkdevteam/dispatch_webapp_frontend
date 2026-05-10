@@ -30,10 +30,15 @@ const Map = () => {
 
     useEffect(() => {
         if (lastJsonMessage) {
+            const new_marker = {
+                team: lastJsonMessage.Team,
+                geocode: [lastJsonMessage.Latitude, lastJsonMessage.Longitude],
+                popUp: `Team ${lastJsonMessage.Team} - ${lastJsonMessage.LastPing}`
+            }
             if (!markers.some(marker => marker.team === lastJsonMessage.Team)) {
-                setMarkers([...markers, lastJsonMessage]);
+                setMarkers([...markers, new_marker]);
             } else {
-                setMarkers(markers.map(marker => lastJsonMessage.Team === marker.team ? lastJsonMessage : marker));
+                setMarkers(markers.map(marker => new_marker.team === marker.team ? new_marker : marker));
             }
         }
     }, [lastJsonMessage]);
@@ -42,6 +47,7 @@ const Map = () => {
         iconUrl: import.meta.env.VITE_TEMP_ICON_URL,
         iconSize: [16, 16]
     });
+    
     return (
         <MapContainer
             key={JSON.stringify(location.pathname === "/")}
@@ -59,7 +65,7 @@ const Map = () => {
             />
             {markers.map(marker =>
                 <Marker
-                    key={marker.geocode.join(",")}
+                    key={`${marker.team}${marker.geocode.join(",")}`}
                     position={marker.geocode}
                     icon={customIcon}
                 >
