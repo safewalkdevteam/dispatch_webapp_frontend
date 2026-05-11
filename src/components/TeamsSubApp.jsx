@@ -1,25 +1,55 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import TeamsSubAppMain from './TeamsSubAppMain';
+import TeamsSubAppAdd from './TeamsSubAppAdd';
 
-function TeamsSubApp() {
-    const [teams, setTeams] = useState([]);
+const TeamsSubApp = () => {
+
+    const [teams, setTeams] = useState(() => []);
+
+    const activeTeams = teams.filter(team => team.active);
+    const inactiveTeamas = teams.filter(team => !team.active);
+
+    const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
+
+    const getTeams = () => fetch(baseUrl)
+        .then((res) => res.json())
+        .then((data) => setTeams(data))
+        .catch((err) => {
+            console.log("err", err)
+            setTeams([])
+        });
 
     useEffect(() => {
-        fetch(`/api/teams`)
-            .then((res) => res.json())
-            .then((data) => setTeams(data))
-            .catch((err) => setTeams([]));
+        getTeams();
     }, []);
 
+    const toggleTeam = (teamColour, active) => {
+        fetch(`${baseUrl}/${teamColour}/active?active=${active}`, {
+            method: "PATCH"
+        })
+        .then(() => getTeams());
+    }
+
     return (
-        <section className={`${teams.length === 0 ? 'empty' : ''}`}>
-            {teams.length === 0 ?
-                <h2>No teams are active.</h2>
-                :
-                teams.map(team =>
-                    <div key={team.id}>
-                        {team.name}
-                    </div>)}
-        </section>
+        <div style={{
+            overflow: "auto"
+        }}>
+            <Routes>
+                <Route index element={
+                    <TeamsSubAppMain
+                        activeTeams={activeTeams}
+                        removeTeam={(teamColour) => toggleTeam(teamColour, false)}
+                    />
+                } />
+                <Route path="add" element={
+                    <TeamsSubAppAdd
+                        inactiveTeams={inactiveTeamas}
+                        addTeam={(teamColour) => toggleTeam(teamColour, true)}
+                    />
+                }></Route>
+            </Routes>
+        </div>
     );
 }
 

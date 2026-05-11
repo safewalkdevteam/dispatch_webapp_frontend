@@ -10,7 +10,7 @@ const Map = () => {
     const [markers, setMarkers] = useState(() => []);
     const [boundaries, setBoundaries] = useState(() => []);
     const location = useLocation();     
-    const { lastJsonMessage, readyState } = useWebSocket(`ws://${import.meta.env.VITE_SERVER_HOST}/api/pings`);
+    const { lastJsonMessage, readyState } = useWebSocket(`ws://${import.meta.env.VITE_SERVER_HOST}/ws`);
 
     const bounds = [
         [import.meta.env.VITE_SOUTH_BOUND, import.meta.env.VITE_WEST_BOUND],
