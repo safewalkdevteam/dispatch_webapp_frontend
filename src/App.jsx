@@ -4,7 +4,7 @@ import BoundariesSubApp from './components/BoundariesSubApp'
 import CallInFormSubApp from './components/CallInFormSubApp'
 import TeamsSubApp from './components/TeamsSubApp'
 import Map from './components/Map'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, matchPath } from 'react-router-dom'
 import SubAppLayout from './SubAppLayout'
 
 function App() {
@@ -13,16 +13,19 @@ function App() {
         {
             name: "Boundaries",
             url: "/boundaries",
+            route: "/boundaries/*",
             component: <BoundariesSubApp />
         },
         {
             name: "Call-In Form",
             url: "/call-in",
+            route: "/call-in/*",
             component: <CallInFormSubApp />
         },
         {
             name: "Teams",
             url: "/teams",
+            route: "/teams/*",
             component: <TeamsSubApp />
         }
     ]
@@ -54,14 +57,17 @@ function App() {
             <Routes>
                 <Route key="subapp" element={
                     <SubAppLayout header={
-                        mainLinks.find(link => link.url === location.pathname)?.name || "Sub App"
+                        mainLinks.find(link => matchPath({
+                            path: link.route,
+                            caseSensitive: true
+                        }, location.pathname))?.name || "Sub App"
                     }/>
                 }>
                     {mainLinks.map(link => (
-                        <Route key={link.url} path={link.url} element={link.component} />
+                        <Route key={link.route} path={link.route} element={link.component} />
                     ))}
                     {quickAccessLinks.map(link => (
-                        <Route key={link.url} path={link.url} />
+                        <Route key={link.route} path={link.route} />
                     ))}
                 </Route>
             </Routes>
