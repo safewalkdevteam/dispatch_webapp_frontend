@@ -7,8 +7,10 @@ const TeamsSubAppMain = ({activeTeams, removeTeam}) => {
     return (
         <section
             style={{
-                position: "relative",
-                overflow: "auto"
+                display: "flex",
+                flexFlow: "column nowrap",
+                overflow: "auto",
+                height: "100%"
             }}
             className={`${activeTeams.length === 0 ? 'empty' : ''}`}>
             <section style={{

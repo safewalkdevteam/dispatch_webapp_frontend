@@ -5,23 +5,31 @@ const TeamsSubAppAdd = ({inactiveTeams, addTeam}) => {
     return (
         <section
             style={{
-                position: "relative",
+                display: "flex",
+                height: "100%",
+                flexFlow: "column nowrap"
             }}
             className={`${inactiveTeams.length === 0 ? 'empty' : ''}`}>
             <Link
                 to=".."
                 style={{
-                    margin: "1em",
+                    margin: "1em 0 0 1em",
                     fontSize: "1rem",
                     color: "#333",
                     textDecoration: "none",
                     backgroundColor: "#F8DB28",
                     fontSize: "1rem",
-                    padding: "0.5em"
+                    padding: "0.5em 1em",
+                    alignSelf: "flex-start"
                 }}
-            >Back</Link>
+            >Back
+            </Link>
             {inactiveTeams.length === 0 ?
-                <h2>All teams are active.</h2>
+                <h2
+                    style={{
+                        flex: "1"
+                    }}
+                >All teams are active.</h2>
                 :
                 <ul
                     style={{

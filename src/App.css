@@ -55,7 +55,7 @@
     border-bottom: 1px solid #2A303C;
 }
 
-.root__subapp section.empty {
+.root__subapp section.empty h2 {
     display: flex;
     justify-content: center;
     align-items: center;
