@@ -9,7 +9,6 @@ const TeamsSubAppMain = ({activeTeams, removeTeam}) => {
             style={{
                 display: "flex",
                 flexFlow: "column nowrap",
-                overflow: "auto",
                 height: "100%"
             }}
             className={`${activeTeams.length === 0 ? 'empty' : ''}`}>
@@ -42,12 +41,20 @@ const TeamsSubAppMain = ({activeTeams, removeTeam}) => {
                 >Add Active Team</Link>
             </section>
             {activeTeams.length === 0 ?
-                <h2>No teams are active.</h2>
+                <h2
+                    style={{
+                        display: "flex",
+                        flexFlow: "column nowrap",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flex: "1"
+                    }}
+                >No teams are active.</h2>
                 :
                 <ul
                     style={{
                         margin: "0 1em",
-                        listStyleType: "none"
+                        listStyleType: "none",
                     }}>
                     {activeTeams.map(team =>
                         <li key={team.teamColour}>

@@ -33,7 +33,8 @@ const TeamsSubApp = () => {
 
     return (
         <div style={{
-            overflow: "auto"
+            overflow: "auto",
+            scrollbarGutter: "stable"
         }}>
             <Routes>
                 <Route index element={

@@ -27,6 +27,10 @@ const TeamsSubAppAdd = ({inactiveTeams, addTeam}) => {
             {inactiveTeams.length === 0 ?
                 <h2
                     style={{
+                        display: "flex",
+                        flexFlow: "column nowrap",
+                        justifyContent: "center",
+                        alignItems: "center",
                         flex: "1"
                     }}
                 >All teams are active.</h2>

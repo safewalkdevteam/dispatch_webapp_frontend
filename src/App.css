@@ -44,7 +44,7 @@
     background-color: whitesmoke;
     display: flex;
     flex-flow: column nowrap;
-    position: relative;
+    height: 100%;
 }
 
 .root__subapp > h2 {
@@ -55,12 +55,14 @@
     border-bottom: 1px solid #2A303C;
 }
 
-.root__subapp section.empty h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.root__subapp div {
     height: 100%;
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
 }
+
+
 
 .sidebar__header {
     border-bottom: 1px solid #2A303C;

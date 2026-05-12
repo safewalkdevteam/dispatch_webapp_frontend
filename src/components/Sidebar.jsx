@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 const Sidebar = (links) => {
     return (
         <section className="root__sidebar">
-            <section className="sidebar__header">
+            <section style={{
+                padding: "1.25em"
+            }} className="sidebar__header">
                 <h1>Safewalk</h1>
                 <h2>DISPATCH</h2>
             </section>
