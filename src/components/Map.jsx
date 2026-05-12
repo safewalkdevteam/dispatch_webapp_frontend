@@ -25,7 +25,8 @@ const Map = () => {
                     ...data,
                     features: data.features.filter(feature => feature.geometry.type == "Polygon")
                 });
-            });
+            })
+            .catch((err) => setBoundaries([]));
     }, []);
 
     useEffect(() => {
@@ -57,7 +58,7 @@ const Map = () => {
             zoomDelta={0.25}
             minZoom={11.5}
             maxBounds={bounds}
-            style={{flex: location.pathname === "/" ? 0.8 : 0.5}}
+            style={{flex: 1}}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

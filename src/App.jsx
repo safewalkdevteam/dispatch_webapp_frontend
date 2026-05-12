@@ -5,9 +5,26 @@ import CallInFormSubApp from './components/CallInFormSubApp'
 import TeamsSubApp from './components/TeamsSubApp'
 import Map from './components/Map'
 import { Routes, Route, useLocation, matchPath } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import SubAppLayout from './SubAppLayout'
 
 function App() {
+    const [teams, setTeams] = useState(() => []);
+
+    const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
+
+    const getTeams = () => fetch(baseUrl)
+        .then((res) => res.json())
+        .then((data) => setTeams(data))
+        .catch((err) => {
+            console.log("err", err)
+            setTeams([])
+        });
+
+    useEffect(() => {
+        getTeams();
+    }, []);
+
     const location = useLocation();
     const mainLinks = [
         {
@@ -26,7 +43,12 @@ function App() {
             name: "Teams",
             url: "/teams",
             route: "/teams/*",
-            component: <TeamsSubApp />
+            component: (
+                <TeamsSubApp
+                    teams={teams}
+                    getTeams={getTeams}
+                />
+            )
         }
     ]
 
@@ -71,7 +93,21 @@ function App() {
                     ))}
                 </Route>
             </Routes>
-            <Map />
+            <div style={{
+                flex: "0.5",
+                display: "flex",
+                flexFlow: "column nowrap",
+                height: "100%"
+            }}>
+                <h2 style={{
+                    fontSize: "1.5em",
+                    padding: "0.25em 1em",
+                    flex: "0 0 2rem",
+                    backgroundColor: "whitesmoke",
+                    borderBottom: "1px solid black"
+                }}>alskdfsa</h2>
+                <Map />
+            </div>
 		</>
 	)
 }

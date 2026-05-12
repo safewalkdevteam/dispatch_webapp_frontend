@@ -3,26 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import TeamsSubAppMain from './TeamsSubAppMain';
 import TeamsSubAppAdd from './TeamsSubAppAdd';
 
-const TeamsSubApp = () => {
-
-    const [teams, setTeams] = useState(() => []);
-
+const TeamsSubApp = ({ teams, getTeams }) => {
     const activeTeams = teams.filter(team => team.active);
     const inactiveTeamas = teams.filter(team => !team.active);
-
-    const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
-
-    const getTeams = () => fetch(baseUrl)
-        .then((res) => res.json())
-        .then((data) => setTeams(data))
-        .catch((err) => {
-            console.log("err", err)
-            setTeams([])
-        });
-
-    useEffect(() => {
-        getTeams();
-    }, []);
 
     const toggleTeam = (teamColour, active) => {
         fetch(`${baseUrl}/${teamColour}/active?active=${active}`, {
