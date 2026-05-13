@@ -7,6 +7,8 @@ const TeamsSubApp = ({ teams, getTeams }) => {
     const activeTeams = teams.filter(team => team.active);
     const inactiveTeamas = teams.filter(team => !team.active);
 
+    const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
+
     const toggleTeam = (teamColour, active) => {
         fetch(`${baseUrl}/${teamColour}/active?active=${active}`, {
             method: "PATCH"

@@ -1,4 +1,4 @@
-const BoundariesSubApp = () => {
+const BoundariesSubApp = ({ groupedBoundaries }) => {
     return (
         <section>
             <h2>boundaries</h2>

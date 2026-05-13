@@ -5,10 +5,9 @@ import "leaflet/dist/leaflet.css";
 import { useLocation } from "react-router-dom";
 import useWebSocketModule from "react-use-websocket";
 
-const Map = () => {
+const Map = ({ boundaries }) => {
     const useWebSocket = useWebSocketModule.default;
     const [markers, setMarkers] = useState(() => []);
-    const [boundaries, setBoundaries] = useState(() => []);
     const location = useLocation();     
     const { lastJsonMessage, readyState } = useWebSocket(`ws://${import.meta.env.VITE_SERVER_HOST}/ws`);
 
@@ -16,18 +15,6 @@ const Map = () => {
         [import.meta.env.VITE_SOUTH_BOUND, import.meta.env.VITE_WEST_BOUND],
         [import.meta.env.VITE_NORTH_BOUND, import.meta.env.VITE_EAST_BOUND]
     ]
-
-    useEffect(() => {
-        fetch("/boundaries.geojson")
-            .then((res) => res.json())
-            .then((data) => {
-                setBoundaries({
-                    ...data,
-                    features: data.features.filter(feature => feature.geometry.type == "Polygon")
-                });
-            })
-            .catch((err) => setBoundaries([]));
-    }, []);
 
     useEffect(() => {
         if (lastJsonMessage) {

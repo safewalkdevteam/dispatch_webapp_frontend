@@ -10,8 +10,27 @@ import SubAppLayout from './SubAppLayout'
 
 function App() {
     const [teams, setTeams] = useState(() => []);
+    const [boundaries, setBoundaries] = useState(() => {
+        return {
+            type: "FeatureCollection",
+            features: []
+        }});
+    const location = useLocation();
 
     const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
+    const groupedBoundaries = boundaries.features.reduce((groups, feature) => {
+        const { fill } = feature.properties;
+
+        if (!groups[fill]) {
+            groups[fill] = {
+                type: "FeatureCollection",
+                features: []
+            }
+        }
+
+        groups[fill].features.push(feature)
+        return groups
+    }, {});
 
     const getTeams = () => fetch(baseUrl)
         .then((res) => res.json())
@@ -25,13 +44,28 @@ function App() {
         getTeams();
     }, []);
 
-    const location = useLocation();
+    useEffect(() => {
+        fetch("/boundaries.geojson")
+            .then((res) => res.json())
+            .then((data) => {
+                setBoundaries({
+                    ...data,
+                    features: data.features.filter(feature => feature.geometry.type == "Polygon")
+                });
+            })
+            .catch((err) => setBoundaries([]));
+    }, []);
+
     const mainLinks = [
         {
             name: "Boundaries",
             url: "/boundaries",
             route: "/boundaries/*",
-            component: <BoundariesSubApp />
+            component: (
+                <BoundariesSubApp
+                    groupedBoundaries={groupedBoundaries}
+                />
+            )
         },
         {
             name: "Call-In Form",
@@ -70,6 +104,9 @@ function App() {
             url: "https://safewalk.betterimpact.com/volunteer/roster"
         }
     ]
+    
+    console.log(boundaries)
+
 	return (
 		<>
             <Sidebar
@@ -106,7 +143,9 @@ function App() {
                     backgroundColor: "whitesmoke",
                     borderBottom: "1px solid black"
                 }}>alskdfsa</h2>
-                <Map />
+                <Map
+                    boundaries={boundaries}
+                />
             </div>
 		</>
 	)
