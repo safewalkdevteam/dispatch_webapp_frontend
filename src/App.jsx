@@ -7,30 +7,16 @@ import Map from './components/Map'
 import { Routes, Route, useLocation, matchPath } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import SubAppLayout from './SubAppLayout'
+import { groupColourMappings } from "../groupColourMappings";
 
 function App() {
     const [teams, setTeams] = useState(() => []);
-    const [boundaries, setBoundaries] = useState(() => {
-        return {
-            type: "FeatureCollection",
-            features: []
-        }});
+    const [groupedBoundaries, setGroupedBoundaries] = useState({});
     const location = useLocation();
 
+    console.log(groupedBoundaries)
+
     const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
-    const groupedBoundaries = boundaries.features.reduce((groups, feature) => {
-        const { fill } = feature.properties;
-
-        if (!groups[fill]) {
-            groups[fill] = {
-                type: "FeatureCollection",
-                features: []
-            }
-        }
-
-        groups[fill].features.push(feature)
-        return groups
-    }, {});
 
     const getTeams = () => fetch(baseUrl)
         .then((res) => res.json())
@@ -48,15 +34,32 @@ function App() {
         fetch("/boundaries.geojson")
             .then((res) => res.json())
             .then((data) => {
-                setBoundaries({
-                    ...data,
-                    features: data.features.filter(feature => feature.geometry.type == "Polygon")
-                });
+                setGroupedBoundaries(
+                    data.features
+                        .filter(feature => feature.geometry.type == "Polygon")
+                        .reduce((groups, polygon) => {
+                            const { fill } = polygon.properties;
+
+                            if (!groups[fill]) {
+                                groups[fill] = {
+                                    hover: false,
+                                    hidden: false,
+                                    name: groupColourMappings[fill],
+                                    boundaries: {
+                                        type: "FeatureCollection",
+                                        features: []
+                                    }
+                                }
+                            }
+
+                            groups[fill].boundaries.features.push(polygon)
+                            return groups
+                        }, {})
+                );
             })
-            .catch((err) => setBoundaries({
-                type: "FeatureCollection",
-                features: []
-            }));
+            .catch((err) => {console.log(err)
+                setGroupedBoundaries({})
+    }   );
     }, []);
 
     const mainLinks = [
@@ -67,6 +70,7 @@ function App() {
             component: (
                 <BoundariesSubApp
                     groupedBoundaries={groupedBoundaries}
+                    setGroupedBoundaries={setGroupedBoundaries}
                 />
             )
         },
@@ -107,8 +111,6 @@ function App() {
             url: "https://safewalk.betterimpact.com/volunteer/roster"
         }
     ]
-    
-    console.log(boundaries)
 
 	return (
 		<>
@@ -147,7 +149,7 @@ function App() {
                     borderBottom: "1px solid black"
                 }}>alskdfsa</h2>
                 <Map
-                    boundaries={boundaries}
+                    groupedBoundaries={groupedBoundaries}
                 />
             </div>
 		</>

@@ -5,7 +5,6 @@ const MainNav = ({ mainLinks }) => {
     const location = useLocation();
 
     const handleClick = (url) => {
-        console.log(url, location.pathname, location.pathname === url);
         if (location.pathname === url) {
             navigate("/");
             return;

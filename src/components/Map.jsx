@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { useLocation } from "react-router-dom";
 import useWebSocketModule from "react-use-websocket";
 
-const Map = ({ boundaries }) => {
+const Map = ({ groupedBoundaries }) => {
     const useWebSocket = useWebSocketModule.default;
     const [markers, setMarkers] = useState(() => []);
     const location = useLocation();     
@@ -60,18 +60,21 @@ const Map = ({ boundaries }) => {
                     <Popup>{marker.popUp}</Popup>
                 </Marker>
             )}
-            <GeoJSON
-                key={JSON.stringify(boundaries)}
-                data={boundaries}
-                style={(feature) => {
-                    return {
-                        color: feature.properties.fill,
-                        weight: 2,
-                        fillOpacity: feature.properties["fill-opacity"],
-                        fillColor: feature.properties.fill
-                    }
-                }}
-            />
+            { Object.keys(groupedBoundaries).map(boundary => 
+                !groupedBoundaries[boundary].hidden &&
+                <GeoJSON
+                    key={JSON.stringify(groupedBoundaries[boundary].boundaries)}
+                    data={groupedBoundaries[boundary].boundaries}
+                    style={(feature) => {
+                        return {
+                            color: feature.properties.fill,
+                            weight: groupedBoundaries[boundary].hover ? 5 : 2,
+                            fillOpacity: feature.properties["fill-opacity"] + (groupedBoundaries[boundary].hover ? 0.3 : 0),
+                            fillColor: feature.properties.fill
+                        }
+                    }}
+                />
+            ) }
         </MapContainer>
     );
 }

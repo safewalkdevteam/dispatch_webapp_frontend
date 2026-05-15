@@ -62,7 +62,21 @@
     flex-flow: column nowrap;
 }
 
+.root__subapp section form {
+    padding: 1em;
+}
 
+.root__subapp section form label {
+    border: 2px solid #333;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    font-weight: bold;
+}
+
+.root__subapp section form input {
+    margin-right: 1em;
+}
 
 .sidebar__header {
     border-bottom: 1px solid #2A303C;
