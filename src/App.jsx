@@ -53,7 +53,10 @@ function App() {
                     features: data.features.filter(feature => feature.geometry.type == "Polygon")
                 });
             })
-            .catch((err) => setBoundaries([]));
+            .catch((err) => setBoundaries({
+                type: "FeatureCollection",
+                features: []
+            }));
     }, []);
 
     const mainLinks = [
@@ -131,7 +134,7 @@ function App() {
                 </Route>
             </Routes>
             <div style={{
-                flex: "0.5",
+                flex: "1",
                 display: "flex",
                 flexFlow: "column nowrap",
                 height: "100%"

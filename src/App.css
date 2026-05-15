@@ -10,7 +10,7 @@
 }
 
 .root__sidebar {
-    flex: 0.2;
+    flex: 0 0 20%;
     display: flex;
     flex-flow: column nowrap;
     background-color: #181C25;
@@ -40,7 +40,7 @@
 }
 
 .root__subapp {
-    flex: 0.3;
+    flex: 0 0 30%;
     background-color: whitesmoke;
     display: flex;
     flex-flow: column nowrap;
