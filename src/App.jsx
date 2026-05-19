@@ -14,7 +14,6 @@ function App() {
     const [groupedBoundaries, setGroupedBoundaries] = useState({});
     const location = useLocation();
 
-    console.log(groupedBoundaries)
 
     const baseUrl = `http://${import.meta.env.VITE_SERVER_HOST}/api/teams`
 

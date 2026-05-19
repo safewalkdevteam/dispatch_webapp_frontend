@@ -5,24 +5,32 @@ const BoundariesSubApp = ({ groupedBoundaries, setGroupedBoundaries }) => {
                 {
                     Object.keys(groupedBoundaries).map(key =>
                         <label
+                            key={key}
                             style={{
-                                display: "block"
+                                display: "block",
+                                borderColor: key,
+                                color: key,
+                                cursor: "pointer"
                             }}
                             onMouseEnter={(e) => {
-                                setGroupedBoundaries({
-                                    ...groupedBoundaries,
-                                    [key]: {
-                                        ...groupedBoundaries[key],
-                                        hover: true
+                                setGroupedBoundaries(prev => {
+                                    return {
+                                        ...prev,
+                                        [key]: {
+                                            ...prev[key],
+                                            hover: true
+                                        }
                                     }
                                 });
                             }}
                             onMouseLeave={(e) => {
-                                setGroupedBoundaries({
-                                    ...groupedBoundaries,
-                                    [key]: {
-                                        ...groupedBoundaries[key],
-                                        hover: false
+                                setGroupedBoundaries(prev => {
+                                    return {
+                                        ...prev,
+                                        [key]: {
+                                            ...prev[key],
+                                            hover: false
+                                        }
                                     }
                                 });
                             }}

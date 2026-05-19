@@ -24,9 +24,9 @@ const Map = ({ groupedBoundaries }) => {
                 popUp: `Team ${lastJsonMessage.Team} - ${lastJsonMessage.LastPing}`
             }
             if (!markers.some(marker => marker.team === lastJsonMessage.Team)) {
-                setMarkers([...markers, new_marker]);
+                setMarkers(prev => [...prev, new_marker]);
             } else {
-                setMarkers(markers.map(marker => new_marker.team === marker.team ? new_marker : marker));
+                setMarkers(prev => prev.map(marker => new_marker.team === marker.team ? new_marker : marker));
             }
         }
     }, [lastJsonMessage]);
@@ -63,7 +63,7 @@ const Map = ({ groupedBoundaries }) => {
             { Object.keys(groupedBoundaries).map(boundary => 
                 !groupedBoundaries[boundary].hidden &&
                 <GeoJSON
-                    key={JSON.stringify(groupedBoundaries[boundary].boundaries)}
+                    key={JSON.stringify(groupedBoundaries[boundary])}
                     data={groupedBoundaries[boundary].boundaries}
                     style={(feature) => {
                         return {
