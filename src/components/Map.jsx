@@ -4,6 +4,7 @@ import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useLocation } from "react-router-dom";
 import useWebSocketModule from "react-use-websocket";
+import PatrollerMarker from "./PatrollerMarker";
 
 const Map = ({ groupedBoundaries }) => {
     const useWebSocket = useWebSocketModule.default;
@@ -21,7 +22,7 @@ const Map = ({ groupedBoundaries }) => {
             const new_marker = {
                 team: lastJsonMessage.Team,
                 geocode: [lastJsonMessage.Latitude, lastJsonMessage.Longitude],
-                popUp: `Team ${lastJsonMessage.Team} - ${lastJsonMessage.LastPing}`
+                lastPing: lastJsonMessage.LastPing
             }
             if (!markers.some(marker => marker.team === lastJsonMessage.Team)) {
                 setMarkers(prev => [...prev, new_marker]);
@@ -52,13 +53,11 @@ const Map = ({ groupedBoundaries }) => {
                 url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
             {markers.map(marker =>
-                <Marker
+                <PatrollerMarker
                     key={`${marker.team}${marker.geocode.join(",")}`}
-                    position={marker.geocode}
-                    icon={customIcon}
-                >
-                    <Popup>{marker.popUp}</Popup>
-                </Marker>
+                    marker={marker}
+                    customIcon={customIcon}
+                />
             )}
             { Object.keys(groupedBoundaries).map(boundary => 
                 !groupedBoundaries[boundary].hidden &&
