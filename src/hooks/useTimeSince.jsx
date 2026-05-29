@@ -11,7 +11,6 @@ const useTimeSince = (lastPing) => {
             }
 
             const seconds = Math.floor((Date.now() / 1000 - lastPing));
-            console.log(seconds);
 
             if (seconds < 60) {
                 setTimeSince(`${seconds}s ago`);

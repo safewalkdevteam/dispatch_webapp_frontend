@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { statusClassMappings } from "../../statusClassMappings";
 
-const ActiveTeamComponent = ({teamColour, onRemoveClick}) => {
+const ActiveTeamComponent = ({team, onRemoveClick}) => {
     const teamMembers = ["Alice", "Bob"];
+    const status = statusClassMappings[team.status]
     return (
         <section
             style={{
@@ -11,13 +13,35 @@ const ActiveTeamComponent = ({teamColour, onRemoveClick}) => {
                 margin: "1em auto"
             }}
         >
-            <h2
+            <div
                 style={{
-                    color: "#111",
-                    fontSize: "1rem",
-                    marginBottom: "0.25em",
+                    display: "flex",
+                    flexFlow: "row nowrap",
+                    justifyContent: "space-between",
+                    alignItems: "center"
                 }}
-            >Team {teamColour}</h2>
+            >
+                <h2
+                    style={{
+                        color: "#111",
+                        fontSize: "1rem",
+                        marginBottom: "0.25em"
+                    }}
+                >Team {team.teamColour}</h2>
+                <span
+                    style={{
+                        fontWeight: "bold",
+                        padding: "0.1em 0.5em",
+                        borderRadius: "1em",
+                        color: `${status.colour}`,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.4em"
+                    }}
+                    className={`${status.className}`}
+                >{status.name}
+                </span>
+            </div>
             <p
                 style={{
                     fontSize: "1rem",

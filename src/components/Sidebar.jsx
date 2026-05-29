@@ -8,8 +8,16 @@ const Sidebar = (links) => {
             <section style={{
                 padding: "1.25em"
             }} className="sidebar__header">
-                <h1>Safewalk</h1>
-                <h2>DISPATCH</h2>
+                <h1
+                    style={{
+                        fontSize: "1.25em"
+                    }}
+                >Safewalk</h1>
+                <h2
+                    style={{
+                        fontSize: "0.9rem"
+                    }}
+                >DISPATCH</h2>
             </section>
             <MainNav mainLinks={links.mainLinks} />
             <hr />

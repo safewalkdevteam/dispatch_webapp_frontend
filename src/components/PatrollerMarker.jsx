@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import useTimeSince from '../hooks/useTimeSince';
 

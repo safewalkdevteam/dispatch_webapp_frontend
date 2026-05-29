@@ -59,7 +59,7 @@ const TeamsSubAppMain = ({activeTeams, removeTeam}) => {
                     {activeTeams.map(team =>
                         <li key={team.teamColour}>
                             <ActiveTeamComponent
-                                teamColour={team.teamColour}
+                                team={team}
                                 onRemoveClick={() => removeTeam(team.teamColour)}
                             />
                         </li>

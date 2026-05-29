@@ -140,3 +140,22 @@
     background-color: #F8DB28;
     color: #181C25;
 }
+
+.available {
+    border: 1px solid #6AD09D;
+    background-color: #EEF8F3;
+    color: #347659;
+}
+
+span::before {
+    width: 0.5em;
+    height: 0.5em;
+    border: 1px;
+    content: ' ';
+    display: inline-block;
+    border-radius: 50%;
+}
+
+span.available::before {
+    background-color: #6AD09D;
+}
