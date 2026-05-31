@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { statusClassMappings } from "../../statusClassMappings";
+import Modal from "./Modal";
+import EditTeamForm from "./EditTeamForm";
 
 const ActiveTeamComponent = ({team, onRemoveClick}) => {
+    const [isModalOpen, setIsModalOpen] = useState(() => false);
     const teamMembers = ["Alice", "Bob"];
     const status = statusClassMappings[team.status]
+    const onEdit = () => {}
     return (
         <section
             style={{
@@ -38,7 +42,7 @@ const ActiveTeamComponent = ({team, onRemoveClick}) => {
                         alignItems: "center",
                         gap: "0.4em"
                     }}
-                    className={`${status.className}`}
+                    className={`team-status ${status.className}`}
                 >{status.name}
                 </span>
             </div>
@@ -61,6 +65,7 @@ const ActiveTeamComponent = ({team, onRemoveClick}) => {
                         cursor: "pointer",
                         textDecoration: "underline"
                     }}
+                    onClick={() => setIsModalOpen(true)}
                 >
                     Edit Team
                 </button>
@@ -77,6 +82,17 @@ const ActiveTeamComponent = ({team, onRemoveClick}) => {
                     Remove Team
                 </button>
             </div>
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title={`Edit ${team.teamColour}`}
+            >
+                <EditTeamForm
+                    team={team}
+                    onSubmit={onEdit}
+                    onClose={() => setIsModalOpen(false)}
+                />
+            </Modal>
         </section>
     )
 }
