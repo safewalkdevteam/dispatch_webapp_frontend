@@ -1,6 +1,8 @@
 const BoundariesSubApp = ({ groupedBoundaries, setGroupedBoundaries }) => {
     return (
-        <section>
+        <section
+            className={"boundaries-subapp"}
+        >
             <form>
                 {
                     Object.keys(groupedBoundaries).map(key =>

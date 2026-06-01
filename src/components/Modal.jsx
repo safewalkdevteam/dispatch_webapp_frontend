@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 const Modal = ({ isOpen, onClose, title, children }) => {
     const modalRef = useRef(null);
     const previousFocusRef = useRef(null);
-
     useEffect(() => {
         if (isOpen) {
             // store the element that opened the modal
@@ -56,9 +55,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
                     backgroundColor: 'white',
                     borderRadius: '8px',
                     padding: '1.5em',
-                    width: "clamp(20em, 40%, 40em)",
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                    height: "90%",
                     overflow: "auto"
                 }}
                 onClick={(e) => e.stopPropagation()} // prevent backdrop close

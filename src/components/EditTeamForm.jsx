@@ -1,47 +1,77 @@
 import { useState } from "react";
+import { statusClassMappings } from "../../statusClassMappings";
+import TeamsSubApp from "./TeamsSubApp";
+import Modal from "./Modal";
 
-const EditTeamForm = ({ team, onSubmit, onClose }) => {
+const EditTeamForm = ({ team, onSubmit, onClose, onRemoveClick }) => {
     const [formData, setFormData] = useState({
-        teamColour: team.teamColour,
+        status: team.status,
         members: team.members
     });
+    const [isModalOpen, setIsModalOpen] = useState(() => false);
 
     const handleSubmit = (e) => {
+        console.log("FORM SUBMIT")
         e.preventDefault();
         onSubmit(formData);
         onClose();
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1em' }}>
-                <label htmlFor="teamColour">Team Colour</label>
-                <input
-                    id="teamColour"
-                    type="text"
-                    value={formData.teamColour}
-                    onChange={(e) => setFormData(prev => ({
-                        ...prev,
-                        teamColour: e.target.value
-                    }))}
-                />
+        <form
+            style={{
+                width: "clamp(20em, 40%, 40em)",
+                height: "100%"
+            }}
+            onSubmit={handleSubmit}>
+            <fieldset>
+                <legend>Select Team Status</legend>
+                {Object.keys(statusClassMappings).map(status => 
+                    <div>
+                        <label>
+                            <input
+                                type="radio"
+                                name={"status"}
+                                value={status}
+                                onChange={() => setFormData(prev => ({
+                                    ...prev,
+                                    status: status
+                                }))}
+                                checked={formData.status === status}
+                            />
+                            {statusClassMappings[status].name}
+                        </label>
+                    </div>
+                )}
+            </fieldset>
+            <div style={{
+                display: 'flex',
+                gap: '0.5em',
+                flexFlow: "row nowrap"
+            }}>
+                <div
+                    style={{
+                        display: "flex",
+                        flexFlow: "row nowrap"
+                    }}
+                >
+                    <button type="submit">Save</button>
+                    <button type="button" onClick={onClose}>Cancel</button>
+                </div>
+                <button
+                    type="button"
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    delete
+                </button>
             </div>
-            <div style={{ marginBottom: '1em' }}>
-                <label htmlFor="members">Members</label>
-                <input
-                    id="members"
-                    type="text"
-                    value={formData.members}
-                    onChange={(e) => setFormData(prev => ({
-                        ...prev,
-                        members: e.target.value
-                    }))}
-                />
-            </div>
-            <div style={{ display: 'flex', gap: '0.5em', justifyContent: 'flex-end' }}>
-                <button type="button" onClick={onClose}>Cancel</button>
-                <button type="submit">Save</button>
-            </div>
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title={`Confirmation ${team.teamColour}`}
+            >
+                <p>hasdfadsf</p>
+            </Modal>
         </form>
     );
 };

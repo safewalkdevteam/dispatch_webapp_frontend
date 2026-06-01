@@ -17,10 +17,12 @@ const TeamsSubApp = ({ teams, getTeams }) => {
     }
 
     return (
-        <div style={{
-            overflow: "auto",
-            scrollbarGutter: "stable"
-        }}>
+        <div
+            style={{
+                overflow: "auto",
+                scrollbarGutter: "stable"
+            }}
+        >
             <Routes>
                 <Route index element={
                     <TeamsSubAppMain

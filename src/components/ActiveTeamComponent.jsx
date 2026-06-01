@@ -91,6 +91,7 @@ const ActiveTeamComponent = ({team, onRemoveClick}) => {
                     team={team}
                     onSubmit={onEdit}
                     onClose={() => setIsModalOpen(false)}
+                    onRemoveClick={onRemoveClick}
                 />
             </Modal>
         </section>
