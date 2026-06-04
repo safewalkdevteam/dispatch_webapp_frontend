@@ -2,6 +2,7 @@ import { useState } from "react";
 import { statusClassMappings } from "../../statusClassMappings";
 import TeamsSubApp from "./TeamsSubApp";
 import Modal from "./Modal";
+import DeleteConfirmationForm from "./DeleteConfirmationForm";
 
 const EditTeamForm = ({ team, onSubmit, onClose, onRemoveClick }) => {
     const [formData, setFormData] = useState({
@@ -70,7 +71,9 @@ const EditTeamForm = ({ team, onSubmit, onClose, onRemoveClick }) => {
                 onClose={() => setIsModalOpen(false)}
                 title={`Confirmation ${team.teamColour}`}
             >
-                <p>hasdfadsf</p>
+                <DeleteConfirmationForm
+                    onConfirm={onRemoveClick}
+                />
             </Modal>
         </form>
     );
