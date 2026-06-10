@@ -21,16 +21,30 @@ const EditTeamForm = ({ team, onSubmit, onClose, onRemoveClick }) => {
     return (
         <form
             style={{
-                width: "clamp(20em, 40%, 40em)",
-                height: "100%"
+                padding: "0.5em",
+                fontSize: "1.25rem",
+                width: "clamp(300px, 50vw, 500px)"
             }}
             onSubmit={handleSubmit}>
-            <fieldset>
-                <legend>Select Team Status</legend>
+            <fieldset
+                style={{
+                    border: "none"
+                }}
+            >
+                <legend
+                    style={{
+                        marginBottom: "0.25em",
+                        fontSize: "1.4rem",
+                        fontWeight: "bold"
+                    }}
+                >Select Team Status</legend>
                 {Object.keys(statusClassMappings).map(status => 
                     <div>
                         <label>
                             <input
+                                style={{
+                                    marginRight: "1em"
+                                }}
                                 type="radio"
                                 name={"status"}
                                 value={status}
@@ -48,22 +62,31 @@ const EditTeamForm = ({ team, onSubmit, onClose, onRemoveClick }) => {
             <div style={{
                 display: 'flex',
                 gap: '0.5em',
-                flexFlow: "row nowrap"
+                flexFlow: "row nowrap",
+                margin: "1em 0"
             }}>
                 <div
                     style={{
                         display: "flex",
-                        flexFlow: "row nowrap"
+                        flexFlow: "row nowrap",
+                        columnGap: "1em"
                     }}
                 >
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={onClose}>Cancel</button>
+                    <button style={{fontSize: "inherit", padding: "0.25em 1em", border: "none", "backgroundColor": "green"}} type="submit">Save</button>
+                    <button style={{fontSize: "inherit", padding: "0.25em 1em", border: "none", "backgroundColor": "lightgray"}} type="button" onClick={onClose}>Cancel</button>
                 </div>
                 <button
                     type="button"
+                    style={{
+                        fontSize: "inherit",
+                        padding: "0.25em 1em",
+                        backgroundColor: "red",
+                        border: "none",
+                        cursor: "pointer"
+                    }}
                     onClick={() => setIsModalOpen(true)}
                 >
-                    delete
+                    Delete
                 </button>
             </div>
             <Modal

@@ -71,7 +71,8 @@ const Modal = ({ isOpen, onClose, title, children }) => {
                 }}>
                     <h2 id="modal-title" style={{
                         margin: 0,
-                        padding: 0
+                        padding: 0,
+                        fontSize: "1.5rem"
                     }}>{title}</h2>
                     <button
                         onClick={onClose}
