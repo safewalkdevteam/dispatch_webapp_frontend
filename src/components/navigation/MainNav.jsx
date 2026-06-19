@@ -14,10 +14,7 @@ const MainNav = ({ mainLinks }) => {
 
     return (
         <section>
-            <h2 style={{
-                margin: "0.75em 1em 0 1em",
-                fontSize: "0.75rem"
-            }}>MAIN</h2>
+            <h2 className="mt-3 ml-4 mb-0 mr-4 text-sm">MAIN</h2>
             <nav>
                 <ul>
                     {mainLinks.map((link, index) => (

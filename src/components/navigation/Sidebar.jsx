@@ -5,19 +5,9 @@ import { Link } from "react-router-dom";
 const Sidebar = (links) => {
     return (
         <section className="root__sidebar">
-            <section style={{
-                padding: "1.25em"
-            }} className="sidebar__header">
-                <h1
-                    style={{
-                        fontSize: "1.25em"
-                    }}
-                >Safewalk</h1>
-                <h2
-                    style={{
-                        fontSize: "0.9rem"
-                    }}
-                >DISPATCH</h2>
+            <section className="p-5 border-b-1 border-solid border-[#2A303C]">
+                <h1 className="text-xl">Safewalk</h1>
+                <h2 className="text-sm">DISPATCH</h2>
             </section>
             <MainNav mainLinks={links.mainLinks} />
             <hr />

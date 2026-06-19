@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import useTimeSince from '../hooks/useTimeSince';
+import useTimeSince from '../../hooks/useTimeSince';
 
 const PatrollerMarker = ({ marker, customIcon }) => {
     const timeSince = useTimeSince(marker.lastPing);

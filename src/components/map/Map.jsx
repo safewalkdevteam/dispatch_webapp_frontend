@@ -46,7 +46,7 @@ const Map = ({ groupedBoundaries }) => {
             zoomDelta={0.25}
             minZoom={11.5}
             maxBounds={bounds}
-            style={{flex: 1}}
+            className="flex-1"
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -78,10 +78,6 @@
     margin-right: 1em;
 }
 
-.sidebar__header {
-    border-bottom: 1px solid #2A303C;
-}
-
 .sidebar__footer {
     display: grid;
     border-top: 1px solid #2A303C;

@@ -32,15 +32,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
     return (
         // backdrop
         <div
-            style={{
-                position: 'fixed',
-                inset: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 2000,
-            }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-2000"
             onClick={onClose} // close on backdrop click
             aria-hidden="true"
         >
@@ -51,41 +43,15 @@ const Modal = ({ isOpen, onClose, title, children }) => {
                 aria-modal="true"
                 aria-labelledby="modal-title"
                 tabIndex={-1}
-                style={{
-                    backgroundColor: 'white',
-                    borderRadius: '8px',
-                    padding: '1.5em',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                    overflow: "auto"
-                }}
+                className="bg-white rounded-lg p-6 shadow-lg overflow-auto"
                 onClick={(e) => e.stopPropagation()} // prevent backdrop close
             >
-                <div style={{
-                    display: 'flex',
-                    flexFlow: "row nowrap",
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: '1em',
-                    padding: 0,
-                    height: "3em"
-                }}>
-                    <h2 id="modal-title" style={{
-                        margin: 0,
-                        padding: 0,
-                        fontSize: "1.5rem"
-                    }}>{title}</h2>
+                <div className="flex flex-row flex-nowrap justify-between items-center mb-4 h-12">
+                    <h2 id="modal-title" className="text-2xl">{title}</h2>
                     <button
                         onClick={onClose}
                         aria-label="Close modal"
-                        style={{
-                            background: 'none',
-                            border: 'none',
-                            fontSize: '1.5rem',
-                            cursor: 'pointer',
-                            padding: '0.25em',
-                            color: "black",
-                            position: ""
-                        }}
+                        className="bg-none border-none text-2xl cursor-pointer p-1 text-black"
                     >
                         ✕
                     </button>

@@ -1,13 +1,12 @@
-import './App.css'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/navigation/Sidebar'
 import BoundariesSubApp from './components/BoundariesSubApp'
 import CallInFormSubApp from './components/CallInFormSubApp'
-import TeamsSubApp from './components/TeamsSubApp'
-import Map from './components/Map'
+import TeamsSubApp from './components/teams/TeamsSubApp'
+import Map from './components/map/Map'
 import { Routes, Route, useLocation, matchPath } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import SubAppLayout from './SubAppLayout'
-import { groupColourMappings } from "../groupColourMappings";
+import { groupColourMappings } from "./constants/groupColourMappings";
 
 function App() {
     const [teams, setTeams] = useState(() => []);
