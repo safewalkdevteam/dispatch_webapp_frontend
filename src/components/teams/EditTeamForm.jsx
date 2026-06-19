@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { statusClassMappings } from "../../statusClassMappings";
+import { statusClassMappings } from "../../constants/statusClassMappings";
 import TeamsSubApp from "./TeamsSubApp";
-import Modal from "./Modal";
+import Modal from "../ui/Modal";
 import DeleteConfirmationForm from "./DeleteConfirmationForm";
 
 const EditTeamForm = ({ team, onSubmit, onClose, onRemoveClick }) => {

@@ -5,57 +5,20 @@ import ActiveTeamComponent from './ActiveTeamComponent';
 
 const TeamsSubAppMain = ({activeTeams, removeTeam}) => {
     return (
-        <section
-            style={{
-                display: "flex",
-                flexFlow: "column nowrap",
-                height: "100%"
-            }}
-            className={`${activeTeams.length === 0 ? 'empty' : ''}`}>
-            <section style={{
-                margin: "1em",
-                display: "flex",
-                flexFlow: "row nowrap",
-                justifyContent: "space-between",
-                alignItems: "center"
-            }}>
-                <h2 style={{
-                    backgroundColor: "#9ca3af",
-                    color: "whitesmoke",
-                    fontSize: "1rem",
-                    padding: "0.25em 1em",
-                    borderRadius: "1em"
-                }}>
+        <section className="flex flex-col flex-wrap">
+            <section className="m-4 flex flex-row flex-nowrap justify-between items-center">
+                <h2 className="bg-[#9ca3af] text-slate-100 text-base py-1 px-4 rounded-full">
                     {activeTeams.length} active
                 </h2>
                 <Link
                     to="add"
-                    style={{
-                        fontSize: "1rem",
-                        color: "#333",
-                        textDecoration: "none",
-                        backgroundColor: "#F8DB28",
-                        fontSize: "1rem",
-                        padding: "0.5em"
-                    }}
+                    className="text-base text-[#333] no-underline bg-[#F8DB28] p-2"
                 >Add Active Team</Link>
             </section>
             {activeTeams.length === 0 ?
-                <h2
-                    style={{
-                        display: "flex",
-                        flexFlow: "column nowrap",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flex: "1"
-                    }}
-                >No teams are active.</h2>
+                <h2 className="flex flex-col flex-nowrap justify-center items-center flex-1">No teams are active.</h2>
                 :
-                <ul
-                    style={{
-                        margin: "0 1em",
-                        listStyleType: "none",
-                    }}>
+                <ul className="my-0 mx-4 list-none">
                     {activeTeams.map(team =>
                         <li key={team.teamColour}>
                             <ActiveTeamComponent

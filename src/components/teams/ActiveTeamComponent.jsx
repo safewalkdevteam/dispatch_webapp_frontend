@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { statusClassMappings } from "../../statusClassMappings";
-import Modal from "./Modal";
+import { statusClassMappings } from "../../constants/statusClassMappings";
+import Modal from "../ui/Modal";
 import EditTeamForm from "./EditTeamForm";
 
 const ActiveTeamComponent = ({team, onRemoveClick}) => {
@@ -10,12 +10,7 @@ const ActiveTeamComponent = ({team, onRemoveClick}) => {
     const onEdit = () => {}
     return (
         <section
-            style={{
-                border: "2px solid #aaa",
-                borderRadius: "0.5em",
-                padding: "0.5em 1em",
-                margin: "1em auto"
-            }}
+            className="border-2 border-solid border-[#aaa] rounded-lg px-4 py-2 mx-auto my-4"
         >
             <div
                 style={{
